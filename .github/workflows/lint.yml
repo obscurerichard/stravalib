@@ -40,5 +40,5 @@ jobs:
         with:
           options: --detailed
 
-      - name: flake8 Lint
+      - name: flake8 lint
         uses: py-actions/flake8@v2
