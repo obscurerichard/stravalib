@@ -33,3 +33,5 @@ jobs:
 
       - name: FawltyDeps
         uses: tweag/FawltyDeps-action@v0.0.1
+        with:
+          options: --detailed
