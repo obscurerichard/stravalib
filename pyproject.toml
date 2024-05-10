@@ -95,8 +95,8 @@ line-length = 79
 # the same edits in the repo stravalib/strava_swagger2pydantic
 
 [tool.fawltydeps]
-# Default options are commented...
 ignore_undeclared = [
+  "stravalib",
   "_typeshed",
 ]
 ignore_unused = [
