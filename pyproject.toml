@@ -80,7 +80,6 @@ docs = [
 ]
 lint = [
   "pre-commit",
-  "fawltydeps",
   "mypy",
   "types-requests",
   "types-pytz",
@@ -93,34 +92,34 @@ line-length = 79
 # the same edits in the repo stravalib/strava_swagger2pydantic
 
 [tool.fawltydeps]
-ignore_undeclared = [
-  "_typeshed",
-]
-ignore_unused = [
-  "autodoc_pydantic",
-  "black",
-  "build",
-  "fawltydeps",
-  "matplotlib",
-  "mypy",
-  "myst-nb",
-  "nox",
-  "pre-commit",
-  "pydata-sphinx-theme",
-  "pytest",
-  "pytest-cov",
-  "responses",
-  "sphinx",
-  "sphinx-autobuild",
-  "sphinx-inline-tabs",
-  "sphinx_copybutton",
-  "sphinx_design",
-  "sphinx_remove_toctrees",
-  "sphinxext-opengraph",
-  "types-Flask",
-  "types-pytz",
-  "types-requests",
-]
+#ignore_undeclared = [
+#  "_typeshed",
+#]
+#ignore_unused = [
+#  "autodoc_pydantic",
+#  "black",
+#  "build",
+#  "fawltydeps",
+#  "matplotlib",
+#  "mypy",
+#  "myst-nb",
+#  "nox",
+#  "pre-commit",
+#  "pydata-sphinx-theme",
+#  "pytest",
+#  "pytest-cov",
+#  "responses",
+#  "sphinx",
+#  "sphinx-autobuild",
+#  "sphinx-inline-tabs",
+#  "sphinx_copybutton",
+#  "sphinx_design",
+#  "sphinx_remove_toctrees",
+#  "sphinxext-opengraph",
+#  "types-Flask",
+#  "types-pytz",
+#  "types-requests",
+#]
 
 [tool.isort]
 profile = "black"
