@@ -1,0 +1,55 @@
+name: Lint
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+# Use bash by default in all jobs
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  lint:
+    name: Test Run (${{ matrix.python-version }}, ${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: ["ubuntu-latest"]
+        python-version: ["3.12"]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: fawltydeps lint - list sources
+        uses: tweag/FawltyDeps-action@v0.0.2
+        with:
+          options: --list-sources
+      - name: fawltydeps lint - list sources
+        uses: tweag/FawltyDeps-action@v0.0.2
+        with:
+          options: --list-sources
+      - name: fawltydeps lint - list imports
+        uses: tweag/FawltyDeps-action@v0.0.2
+        with:
+          options: --list-imports
+      - name: fawltydeps lint - list dependencides
+        uses: tweag/FawltyDeps-action@v0.0.2
+        with:
+          options: --list-deps
+      - name: fawltydeps lint - detailed report
+        uses: tweag/FawltyDeps-action@v0.0.2
+        with:
+          options: --detailed
+      - name: FawltyDeps lint
+        uses: tweag/FawltyDeps-action@v0.0.1
+        with:
+          options: --detailed
