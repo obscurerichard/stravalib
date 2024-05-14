@@ -30,23 +30,23 @@ jobs:
           python-version: ${{ matrix.python-version }}
 
       - name: fawltydeps lint - list sources
-        uses: tweag/FawltyDeps-action@v0.0.2
+        uses: tweag/FawltyDeps-action@fixup-minor-issues
         with:
           options: --list-sources
       - name: fawltydeps lint - list sources
-        uses: tweag/FawltyDeps-action@v0.0.2
+        uses: tweag/FawltyDeps-action@fixup-minor-issues
         with:
           options: --list-sources
       - name: fawltydeps lint - list imports
-        uses: tweag/FawltyDeps-action@v0.0.2
+        uses: tweag/FawltyDeps-action@fixup-minor-issues
         with:
           options: --list-imports
       - name: fawltydeps lint - list dependencides
-        uses: tweag/FawltyDeps-action@v0.0.2
+        uses: tweag/FawltyDeps-action@fixup-minor-issues
         with:
           options: --list-deps
       - name: fawltydeps lint - detailed report
-        uses: tweag/FawltyDeps-action@v0.0.2
+        uses: tweag/FawltyDeps-action@fixup-minor-issues
         with:
           options: --detailed
       - name: FawltyDeps lint
