@@ -50,6 +50,6 @@ jobs:
         with:
           options: --detailed
       - name: FawltyDeps lint
-        uses: tweag/FawltyDeps-action@v0.0.1
+        uses: tweag/FawltyDeps-action@fixup-minor-issues
         with:
           options: --detailed
