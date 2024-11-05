@@ -1,5 +1,6 @@
 # Welcome to stravalib
 
+[![All Contributors](https://img.shields.io/github/all-contributors/stravalib/stravalib?color=ee8449&style=flat-square)](#contributors)
 [![DOI](https://zenodo.org/badge/8828908.svg)](https://zenodo.org/badge/latestdoi/8828908)
 ![PyPI](https://img.shields.io/pypi/v/stravalib?style=plastic) ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/stravalib?style=plastic) [![Documentation Status](https://readthedocs.org/projects/stravalib/badge/?version=latest)](https://stravalib.readthedocs.io/en/latest/?badge=latest) ![Package Tests Status](https://github.com/stravalib/stravalib/actions/workflows/build-test.yml/badge.svg) ![PyPI - Downloads](https://img.shields.io/pypi/dm/stravalib?style=plastic) [![codecov](https://codecov.io/gh/stravalib/stravalib/branch/main/graph/badge.svg?token=sHbFJn7epy)](https://codecov.io/gh/stravalib/stravalib)
 
@@ -226,3 +227,24 @@ num_value = unithelper.miles(activity.distance).num
 ## Still reading?
 
 The [published sphinx documentation](https://stravalib.readthedocs.io/) provides much more.
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<table>
+  <tbody>
+    <tr>
+      <td align="center" valign="top" width="14.28%"><a href="https://towardsdatascience.com/@djcunningham0"><img src="https://avatars.githubusercontent.com/u/38900370?v=4?s=100" width="100px;" alt="Danny Cunningham"/><br /><sub><b>Danny Cunningham</b></sub></a><br /><a href="https://github.com/stravalib/stravalib/commits?author=djcunningham0" title="Documentation">📖</a> <a href="#ideas-djcunningham0" title="Ideas, Planning, & Feedback">🤔</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="http://www-ljk.imag.fr/membres/Jerome.Lelong/"><img src="https://avatars.githubusercontent.com/u/2910140?v=4?s=100" width="100px;" alt="Jerome Lelong"/><br /><sub><b>Jerome Lelong</b></sub></a><br /><a href="https://github.com/stravalib/stravalib/issues?q=author%3Ajlelong" title="Bug reports">🐛</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://vortza.com"><img src="https://avatars.githubusercontent.com/u/1788027?v=4?s=100" width="100px;" alt="Jonatan Samoocha"/><br /><sub><b>Jonatan Samoocha</b></sub></a><br /><a href="https://github.com/stravalib/stravalib/commits?author=jsamoocha" title="Code">💻</a> <a href="https://github.com/stravalib/stravalib/pulls?q=is%3Apr+reviewed-by%3Ajsamoocha" title="Reviewed Pull Requests">👀</a> <a href="https://github.com/stravalib/stravalib/commits?author=jsamoocha" title="Documentation">📖</a> <a href="#maintenance-jsamoocha" title="Maintenance">🚧</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="http://www.leahwasser.com"><img src="https://avatars.githubusercontent.com/u/7649194?v=4?s=100" width="100px;" alt="Leah Wasser"/><br /><sub><b>Leah Wasser</b></sub></a><br /><a href="https://github.com/stravalib/stravalib/commits?author=lwasser" title="Code">💻</a> <a href="https://github.com/stravalib/stravalib/pulls?q=is%3Apr+reviewed-by%3Alwasser" title="Reviewed Pull Requests">👀</a> <a href="https://github.com/stravalib/stravalib/commits?author=lwasser" title="Documentation">📖</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/yotam5"><img src="https://avatars.githubusercontent.com/u/69643410?v=4?s=100" width="100px;" alt="Yotam"/><br /><sub><b>Yotam</b></sub></a><br /><a href="https://github.com/stravalib/stravalib/commits?author=yotam5" title="Documentation">📖</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/enadeau"><img src="https://avatars.githubusercontent.com/u/12940089?v=4?s=100" width="100px;" alt="Émile Nadeau"/><br /><sub><b>Émile Nadeau</b></sub></a><br /><a href="https://github.com/stravalib/stravalib/commits?author=enadeau" title="Code">💻</a> <a href="https://github.com/stravalib/stravalib/pulls?q=is%3Apr+reviewed-by%3Aenadeau" title="Reviewed Pull Requests">👀</a> <a href="https://github.com/stravalib/stravalib/commits?author=enadeau" title="Documentation">📖</a> <a href="#maintenance-enadeau" title="Maintenance">🚧</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- markdownlint-restore -->
+<!-- prettier-ignore-end -->
+
+<!-- ALL-CONTRIBUTORS-LIST:END -->

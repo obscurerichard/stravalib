@@ -77,6 +77,7 @@ If you only want to install dependencies for building and testing the package (a
 Also note that some shells may not need the `".[build, tests]"` but it is needed for zsh shells and will likely work on most if not all shells with the quotes.
 ```
 
+(ci_api_updates)=
 ## Architecture Overview
 
 ![Stravalib Architecture](../images/stravalib_architecture.png)
@@ -117,6 +118,7 @@ best practices for Python code readability and consistency:
   Because black's default line length is 88 characters, we adjust it to 79
   characters in the config [to follow PEP 8 line width guidelines](https://peps.python.org/pep-0008/#maximum-line-length).
 - [isort](https://pycqa.github.io/isort/): ensure imports are ordered following [PEP 8 import guidelines](https://peps.python.org/pep-0008/#imports)
+- [FawltyDeps](https://github.com/tweag/FawltyDeps/): FawltyDeps is a linter that ensures that finds _undeclared_ or _unused_ 3rd party dependencies in the project.
 - [flake8](https://flake8.pycqa.org/en/latest/): flake8 is a linter. It identifies other PEP 8 issues in the code that Black will not address including comments that extend beyond 79
   characters and doc string line width. It also will identify unused imports and
   unused but declared variables.
@@ -204,10 +206,10 @@ skip that run and continue to the next version.
 ```bash
 
 ❯ nox -s mypy
-nox > Running session mypy-3.8
+nox > Running session mypy-3.10
 nox > Missing interpreters will error by default on CI systems.
-nox > Session mypy-3.8 skipped: Python interpreter 3.8 not found.
-nox > Running session mypy-3.9
+nox > Session mypy-3.10 skipped: Python interpreter 3.10 not found.
+nox > Running session mypy-3.11
 ```
 
 ## Code format and syntax
@@ -243,8 +245,8 @@ sets of tests that you can run:
 We will add more information about the test suite in the near future.
 
 For integration tests that should be run independently from Strava, there's a
-pytest fixture :func:`~stravalib.tests.integration.conftest.mock_strava_api`
-that is based on :class:`responses.RequestsMock`.
+pytest fixture {py:func}`~stravalib.tests.integration.conftest.mock_strava_api`
+that is based on {py:class:}`responses.RequestsMock`.
 This fixture, prevents requests being made to the actual Strava API and instead
 registers responses that are based on examples from the published Strava API
 documentation. Example usages of this fixture can be found in the
@@ -263,19 +265,21 @@ they are running against the installed version of the package that you are worki
 To run the test suite across all python versions that we support use:
 
 ```
-nox -s test
+nox -s tests
 ```
 
-`nox -s test` does a few things:
+`nox -s tests` does a few things:
 
 1. It create a temporary directory called `tmp-test-dir-stravalib` in which your tests are run. We create this test directory to ensure that tests are being run against the installed version of stravalib (with the most recent local development changes as installed) rather than the flat files located in the GitHub repository.
 2. It runs the tests and provides output (see below)
 3. Finally it removes the temporary directory
 
-If you are a conda/mamba user, you can use:
+To run tests for a specific python version use nox -s tests-python-version-here.
 
-```
-nox -s test_mamba
+For example, below we run tests for only Python 3.10.
+
+```bash
+nox -s tests-3.10
 ```
 
 ### Functional end-to-end test suite
@@ -350,7 +354,7 @@ stravalib/client.py                                        439    180    59%
 stravalib/exc.py                                            34      3    91%
 stravalib/model.py                                         709    126    82%
 stravalib/protocol.py                                      130     39    70%
-stravalib/unithelper.py                                     16      1    94%
+stravalib/unit_helper.py                                     16      1    94%
 stravalib/util/__init__.py                                   0      0   100%
 stravalib/util/limiter.py                                  122     27    78%
 ----------------------------------------------------------------------------
@@ -372,7 +376,7 @@ actions completes, the report will be processed and returned to the pull request
 ## Documentation
 
 `Stravalib` documentation is created using `sphinx` and the
-[`furo`](https://pradyunsg.me/furo/quickstart/) theme.
+[`pydata_sphinx_theme`](https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html) theme.
 `Stravalib` documentation is hosted on [ReadtheDocs](https://readthedocs.org).
 
 The final online build that you see on readthedocs happens on the readthedocs
@@ -387,7 +391,7 @@ readthedocs build is passing or failing.
 
 [![Documentation Status](https://readthedocs.org/projects/stravalib/badge/?version=latest)](https://stravalib.readthedocs.io/en/latest/?badge=latest)
 
-Currently @hozn, @lwasser and @jsamoocha have access to the readthedocs `stravalib`
+Currently [@hozn](https://www.github.com/hozn), [@lwasser](https://www.github.com/lwasser) and [@jsamoocha](https://www.github.com/jsamoocha) have access to the readthedocs `stravalib`
 documentation build
 
 Online documentation will be updated on all merges to the main branch of
@@ -438,20 +442,18 @@ file without included content.
 
 ### Stravalib API Documentation
 
-```{warning}
-ThIS SECTION WILL BE UPDATED IN THE NEAR FUTURE
-
-The API reference is manually assembled in `doc/api/index.rst`.
+The API reference can be found [here](reference).
 The *autodoc* sphinx extension will automatically create pages for each
 function/class/module listed there.
 
 You can reference classes, functions, and modules from anywhere (including docstrings)
-using <code>:func:\`package.module.function\`</code>,
-<code>:class:\`package.module.class\`</code>, or
-<code>:mod:\`package.module\`</code>.
+using
+* <code>{py:func}\`package.module.function\`</code>,
+* <code>{py:class}\`package.module.class\`</code>, or
+* <code>{py:mod}\`package.module\`</code>.
+
 Sphinx will create a link to the automatically generated page for that
 function/class/module.
-```
 
 ### About the documentation CI build
 

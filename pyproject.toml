@@ -49,7 +49,7 @@ classifiers = [
   "Programming Language :: Python :: 3.12",
 ]
 
-dependencies = ["pint", "pytz", "arrow", "requests", "pydantic<2.0"]
+dependencies = ["pint", "pytz", "arrow", "requests", "pydantic>=2.0"]
 
 [project.urls]
 documentation = "https://stravalib.readthedocs.io"
@@ -60,9 +60,11 @@ changelog = "https://github.com/stravalib/stravalib/blob/main/changelog.md"
 [project.optional-dependencies]
 build = ["build"]
 tests = [
+  "nox",
   "pytest",
   "pytest-cov",
-  "responses"
+  "responses",
+  "typing-extensions"
 ]
 docs = [
   "sphinx",
@@ -76,20 +78,54 @@ docs = [
   "sphinx_design",
   "sphinxext-opengraph",
   # Needed for sphinx open graph
-  "matplotlib"
+  "matplotlib",
+  "sphinxcontrib-mermaid",
 ]
 lint = [
   "pre-commit",
+  "fawltydeps",
   "mypy",
   "types-requests",
   "types-pytz",
-  "types-Flask"
+  "types-Flask",
+  "ruff"
 ]
 
 [tool.black]
 line-length = 79
 # When editing the config for black in this file, be sure to make
 # the same edits in the repo stravalib/strava_swagger2pydantic
+
+[tool.fawltydeps]
+ignore_undeclared = [
+  "stravalib",
+  "_typeshed",
+]
+ignore_unused = [
+  "autodoc_pydantic",
+  "black",
+  "build",
+  "fawltydeps",
+  "matplotlib",
+  "mypy",
+  "myst-nb",
+  "nox",
+  "pre-commit",
+  "pydata-sphinx-theme",
+  "pytest",
+  "pytest-cov",
+  "responses",
+  "sphinx",
+  "sphinx-autobuild",
+  "sphinx-inline-tabs",
+  "sphinx_copybutton",
+  "sphinx_design",
+  "sphinx_remove_toctrees",
+  "sphinxext-opengraph",
+  "types-Flask",
+  "types-pytz",
+  "types-requests",
+]
 
 [tool.isort]
 profile = "black"
@@ -101,7 +137,7 @@ filterwarnings = [
 ]
 
 [tool.mypy]
-python_version = "3.9"
+python_version = "3.10"
 follow_imports = "silent"
 warn_redundant_casts = true
 warn_unused_ignores = true
