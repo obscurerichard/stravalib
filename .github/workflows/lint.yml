@@ -33,3 +33,4 @@ jobs:
         uses: tweag/FawltyDeps-action@fixup-minor-issues
         with:
           options: --detailed
+          fawltydeps-version: v0.16.0
