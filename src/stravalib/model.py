@@ -522,6 +522,13 @@ class RelaxedActivityType(ActivityType):
             values = "Workout"
         return values
 
+    def __eq__(self, other: Any) -> bool:
+        if isinstance(other, RelaxedActivityType):
+            return other.root == self.root
+        elif isinstance(other, str):
+            return other == self.root
+        return False
+
 
 class RelaxedSportType(SportType):
     """A class that extends the list of Literal values allowed for Sport Types
@@ -551,6 +558,13 @@ class RelaxedSportType(SportType):
             )
             values = "Workout"
         return values
+
+    def __eq__(self, other: Any) -> bool:
+        if isinstance(other, RelaxedSportType):
+            return other.root == self.root
+        elif isinstance(other, str):
+            return other == self.root
+        return False
 
 
 class LatLon(LatLng):
@@ -1242,12 +1256,33 @@ class SummaryActivity(MetaActivity, strava_model.SummaryActivity):
 
     # field overrides from superclass for type extensions:
     athlete: MetaAthlete | None = None
+    average_speed: VelocityType | None = None
+    distance: DistanceType | None = None
+    elapsed_time: DurationType | None = None
     # These force validator to run on lat/lon
     start_latlng: LatLon | None = None
     end_latlng: LatLon | None = None
     map: Map | None = None
+    max_speed: VelocityType | None = None
+    moving_time: DurationType | None = None
     type: RelaxedActivityType | None = None
     sport_type: RelaxedSportType | None = None
+    timezone: TimezoneType | None = None
+    total_elevation_gain: DistanceType | None = None
+
+    # Undocumented attributes:
+    utc_offset: float | None = None
+    location_city: str | None = None
+    location_state: str | None = None
+    location_country: str | None = None
+    pr_count: int | None = None
+    suffer_score: int | None = None
+    has_heartrate: bool | None = None
+    average_heartrate: float | None = None
+    max_heartrate: int | None = None
+    average_cadence: float | None = None
+    from_accepted_tag: bool | None = None
+    visibility: str | None = None
 
     _latlng_check = field_validator(
         "start_latlng", "end_latlng", mode="before"
@@ -1263,8 +1298,6 @@ class DetailedActivity(
     """
 
     # Field overrides from superclass for type extensions:
-    distance: DistanceType | None = None
-    total_elevation_gain: DistanceType | None = None
     gear: SummaryGear | None = None
     best_efforts: Sequence[BestEffort] | None = None
     # TODO: returning empty Sequence should be  DetailedSegmentEffort object
@@ -1275,11 +1308,6 @@ class DetailedActivity(
     splits_standard: Sequence[Split] | None = None
     photos: PhotosSummary | None = None
     laps: Sequence[Lap] | None = None
-    elapsed_time: DurationType | None = None
-    moving_time: DurationType | None = None
-    average_speed: VelocityType | None = None
-    max_speed: VelocityType | None = None
-    timezone: TimezoneType | None = None
 
     # Added for backward compatibility
     # TODO maybe deprecate?
@@ -1293,27 +1321,15 @@ class DetailedActivity(
 
     # Undocumented attributes:
     guid: str | None = None
-    utc_offset: float | None = None
-    location_city: str | None = None
-    location_state: str | None = None
-    location_country: str | None = None
     start_latitude: float | None = None
     start_longitude: float | None = None
-    pr_count: int | None = None
-    suffer_score: int | None = None
-    has_heartrate: bool | None = None
-    average_heartrate: float | None = None
-    max_heartrate: int | None = None
-    average_cadence: float | None = None
     average_temp: int | None = None
     instagram_primary_photo: str | None = None
     partner_logo_url: str | None = None
     partner_brand_tag: str | None = None
-    from_accepted_tag: bool | None = None
     segment_leaderboard_opt_out: bool | None = None
     perceived_exertion: int | None = None
     prefer_perceived_exertion: bool | None = None
-    visibility: str | None = None
     private_note: str | None = None
 
     _naive_local = field_validator("start_date_local")(naive_datetime)

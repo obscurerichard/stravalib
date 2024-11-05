@@ -178,7 +178,7 @@ class Client:
         self, client_id: int, client_secret: str, code: str
     ) -> AccessInfo:
         """Exchange the temporary authorization code (returned with redirect
-        from strava authorization URL)  for a short-lived access token and a
+        from Strava authorization URL) for a short-lived access token and a
         refresh token (used to obtain the next access token later on).
 
         Parameters
@@ -196,8 +196,6 @@ class Client:
             Dictionary containing the access_token, refresh_token and
             expires_at (number of seconds since Epoch when the provided access
             token will expire)
-
-
         """
         return self.protocol.exchange_code_for_token(
             client_id=client_id, client_secret=client_secret, code=code
@@ -288,7 +286,7 @@ class Client:
 
         Returns
         -------
-        class:`BatchedResultsIterator`
+        :class:`stravalib.model.BatchedResultsIterator`
             An iterator of :class:`stravalib.model.SummaryActivity` objects.
 
         """
@@ -315,18 +313,20 @@ class Client:
         detail-level representation of currently authenticated athlete;
         otherwise summary-level representation returned of athlete.
 
-        https://developers.strava.com/docs/reference/#api-Athletes
-
-        https://developers.strava.com/docs/reference/#api-Athletes-getLoggedInAthlete
-
         Parameters
         ----------
 
         Returns
         -------
         class:`stravalib.model.DetailedAthlete`
-            The athlete model object.
+            The :class:`stravalib.model.DetailedAthlete` model object.
 
+        Notes
+        -----
+        See:
+        https://developers.strava.com/docs/reference/#api-Athletes
+
+        https://developers.strava.com/docs/reference/#api-Athletes-getLoggedInAthlete
         """
         raw = self.protocol.get("/athlete")
 
@@ -447,9 +447,6 @@ class Client:
 
         https://developers.strava.com/docs/reference/#api-Athletes-getStats
 
-        Note that this will return the stats for _public_ activities only,
-        regardless of the scopes of the current access token.
-
         Parameters
         ----------
         athlete_id : int, default=None
@@ -459,6 +456,11 @@ class Client:
         -------
         :class:`stravalib.model.AthleteStats`
             A model containing the Stats
+
+        Notes
+        -----
+        Note that this will return the stats for public activities only,
+        regardless of the scopes of the current access token.
 
         """
         if athlete_id is None:
@@ -482,7 +484,7 @@ class Client:
 
         Returns
         -------
-        class:`BatchedResultsIterator`
+        :class:`stravalib.model.BatchedResultsIterator`
             An iterator of :class:`stravalib.model.SummaryClub` objects
 
         """
@@ -654,10 +656,8 @@ class Client:
     ) -> model.DetailedActivity:
         """Gets specified activity.
 
-        Will be detail-level if owned by authenticated user; otherwise
-        summary-level.
-
-        https://developers.strava.com/docs/reference/#api-Activities-getActivityById
+        Will be detail-level activity return if owned by authenticated user;
+        otherwise it will be summary-level.
 
         Parameters
         ----------
@@ -669,8 +669,13 @@ class Client:
 
         Returns
         -------
-        class: `model.DetailedActivity`
-            An Activity object containing the requested activity data.
+        :class:`model.DetailedActivity`
+            A `DetailedActivity` object containing the requested activity data.
+
+        Notes
+        ------
+        https://developers.strava.com/docs/reference/#api-Activities-getActivityById
+
 
         """
         raw = self.protocol.get(
@@ -781,7 +786,7 @@ class Client:
             The time in seconds or a :class:`datetime.timedelta` object.
         description : str, default=None
             The description for the activity.
-        distance : class:`pint.Quantity` or float (meters), default=None
+        distance : :class:`pint.Quantity` or float (meters), default=None
             The distance in meters (float) or a :class:`pint.Quantity` instance.
         trainer : bool
             Whether this activity was completed using a trainer (or not)
@@ -1537,9 +1542,11 @@ class Client:
             Resource locator for the streams
         types : list[str], optional, default=None
             A list of the types of streams to fetch.
-        resolution : str, optional
+        resolution : str, optional, default=None
             Indicates desired number of data points. 'low' (100), 'medium'
-            (1000) or 'high' (10000).
+            (1000) or 'high' (10000). The default of `None` will return full
+            resolution data which in some cases (e.g. for long activities) will
+            return more points / full data resolution.
             .. deprecated::
                 This param is not officially supported by the Strava API and may be
                 removed in the future.
